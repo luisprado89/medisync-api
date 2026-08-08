@@ -3,6 +3,7 @@ package com.medisync.api.repository;
 import com.medisync.api.entity.Empleado;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -28,4 +29,19 @@ public interface EmpleadoRepository extends JpaRepository<Empleado, Long> {
      * activo; en caso contrario, un {@link Optional#empty()}.
      */
     Optional<Empleado> findByPersonaIdAndActivoTrue(Long personaId);
+
+    /**
+     * Obtiene todos los empleados activos.
+     *
+     * @return lista de empleados activos.
+     */
+    List<Empleado> findAllByActivoTrue();
+
+    /**
+     * Busca un empleado por su identificador comprobando que esté activo.
+     *
+     * @param id identificador del empleado.
+     * @return el empleado activo encontrado, si existe.
+     */
+    Optional<Empleado> findByIdAndActivoTrue(Long id);
 }

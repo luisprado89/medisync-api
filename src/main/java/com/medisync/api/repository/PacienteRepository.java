@@ -3,6 +3,7 @@ package com.medisync.api.repository;
 import com.medisync.api.entity.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -28,4 +29,18 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
      * activo; en caso contrario, un {@link Optional#empty()}.
      */
     Optional<Paciente> findByPersonaIdAndActivoTrue(Long personaId);
+    /**
+     * Obtiene todos los pacientes activos.
+     *
+     * @return lista de pacientes activos.
+     */
+    List<Paciente> findAllByActivoTrue();
+
+    /**
+     * Busca un paciente por su identificador comprobando que esté activo.
+     *
+     * @param id identificador del paciente.
+     * @return el paciente activo encontrado, si existe.
+     */
+    Optional<Paciente> findByIdAndActivoTrue(Long id);
 }

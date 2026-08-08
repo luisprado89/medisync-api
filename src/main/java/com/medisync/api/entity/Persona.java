@@ -19,6 +19,10 @@ public class Persona {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    // RELACIÓN INVERSA AÑADIDA
+    @OneToOne(mappedBy = "persona", fetch = FetchType.LAZY)
+    private Usuario usuario;
+
     @Column(name = "activo", nullable = false)
     @Builder.Default// Booleano por defecto true. Recordamos que @Builder.Default es VITAL aquí.
     private Boolean activo = true;
